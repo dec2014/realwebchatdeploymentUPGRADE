@@ -1,0 +1,17 @@
+<div class="grid grid-cols-4 gap-4 ">
+        {% for ro in room %}
+            <div class="py-4 rounded-xl {% if room.status == 'waiting' %} bg-emerald-100 {% elif room.status == 'active' %} bg-yellow-100 {% else %} bg-gray-100 {% endif %}">
+                <h3 class="mb-4 text-lg"> chat</h3>
+                <p>
+                    <b>ID:</b>{{ro.room_name}} <br>
+                    <b>created_by:</b>{{ro.created_by}} <br>
+                    <b>status:</b>{{ro.get_status_display}} <br>
+
+
+
+                </p>
+                <a href="{% url 'room' ro.room_name %}" class="mt-4 inline-block py-2 px-6 bg-emerald-800 text-white rounded-xl">See Chats </a>
+            </div>
+        {% endfor %}
+    
+</div>
