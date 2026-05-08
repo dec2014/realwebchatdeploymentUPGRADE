@@ -2,6 +2,7 @@
 
 let chatName=''
 let chatSocket=null
+let chatWindow=window.location.href
 
 
 

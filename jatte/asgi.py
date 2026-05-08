@@ -1,13 +1,14 @@
 import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'jatte.settings')
+
+
+from django.core.asgi import get_asgi_application
+django_asgi_application = get_asgi_application()
+
 from channels.auth import AuthMiddlewareStack
 from channels.routing import URLRouter,ProtocolTypeRouter
 from channels.security.websocket import AllowedHostsOriginValidator
-from django.core.asgi import get_asgi_application
 from chat import routing
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'jatte.settings')
-
-django_asgi_application = get_asgi_application()
 
 application=ProtocolTypeRouter({
     'http':django_asgi_application,
