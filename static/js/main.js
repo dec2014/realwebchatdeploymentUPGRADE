@@ -117,21 +117,17 @@ async function JoinChatRoom(){
     console.log(chat_name)
     
 
-    await fetch(`${window.location.origin}/create-room/${chatRoomUUID}/`, {
-    method: 'POST',
+    await fetch(`${window.location.origin}/create-room/${chat_name}/`,{
+        method:'POST',
+        headers:{
+            'X-CSRFToken':getCookie('csrftoken')
 
-    headers: {
-        'X-CSRFToken': getCookie('csrftoken')
-    },
-
-    body: data
-})
-.then(function(res) {
-    return res.json()
-})
-.then(function(data) {
-    console.log('data', data)
-})
+        }
+    }).then(function(res){
+        return res.json()
+    }).then(function(data){
+        console.log('data',data)
+    })
 
     chatSocket=new WebSocket(`wss://${window.location.host}/ws/${chat_name}/`)
     chatSocket.onmessage=function(e){
